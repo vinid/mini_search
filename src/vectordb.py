@@ -31,7 +31,7 @@ class LanceDB(AbstractDB):
         table = vec_to_table(embeddings)
 
         combined = pa.Table.from_pandas(data).append_column("vector", table["vector"])
-        ds = lance.write_dataset(combined, "chatbot.lance", mode="overwrite")
+        ds = lance.write_dataset(combined, "../chatbot.lance", mode="overwrite")
 
         ds.create_index("vector",
                              index_type="IVF_PQ",
@@ -41,7 +41,7 @@ class LanceDB(AbstractDB):
 
     def vector_search(self, vector, k=1):
         import lance
-        self.ds = lance.dataset("chatbot.lance")
+        self.ds = lance.dataset("../chatbot.lance")
         return self.ds.to_table(
             nearest={
                 "column": "vector",

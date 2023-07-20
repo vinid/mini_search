@@ -7,7 +7,7 @@ if __name__ == "__main__":
 
     encode_max = 10000
 
-    data = pd.read_csv("pubmed_abstracts.csv")
+    data = pd.read_csv("../pubmed_abstracts.csv")
 
     all_abstracts = []
 
