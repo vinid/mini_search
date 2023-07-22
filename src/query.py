@@ -27,10 +27,15 @@ def main(query):
     prompt = f"Please answer this question {query}\n\nhere's the context you should use:\n\n{text}"
 
     output = ChatGPTWrapper(os.environ['OPENAI_API_KEY']).sample(prompt, role=search_role)
-
-    print(f"Question: {prompt}")
     print()
-    print(f"Answer: {output}")
+    print()
+    print(f"Answer using context: {output}")
+
+    output = ChatGPTWrapper(os.environ['OPENAI_API_KEY']).sample(query, role="You are an helpful assistant")
+    print()
+    print()
+    print(f"Answer without the context: {output}")
+
 
 
 if __name__ == "__main__":
