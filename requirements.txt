@@ -4,3 +4,4 @@ tqdm
 pandas
 sentence-transformers
 lancedb
+eutils

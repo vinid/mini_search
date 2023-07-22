@@ -10,7 +10,7 @@ class ChatGPTWrapper:
         self.model_name = model_name
         openai.api_key = api_key
 
-    def sample(self, text, temperature=0.8, max_tokens=100):
+    def sample(self, text, temperature=0.8, max_tokens=100, *, role):
         metadata = {"model": self.model_name,
                     "temperature": temperature,
                     "max_tokens": max_tokens}
@@ -19,8 +19,7 @@ class ChatGPTWrapper:
 
         r = openai.ChatCompletion.create(
             messages=[
-                {"role": "system", "content": "You are a search engine that replies to query based on context. Answer with "
-                                              "information provided within the context otherwise reply with 'I don't know'"},
+                {"role": "system", "content": role},
                 {"role": "user", "content": text}
             ],
             **metadata
